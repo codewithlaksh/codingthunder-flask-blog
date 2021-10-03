@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/home-bg.jpg') }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Admin Dashboard</h1>
+                            <span class="subheading">Create/edit/delete posts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container-fluid px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <h1>Basic Actions</h1>
+                    <a class="btn btn-primary text-uppercase" href="/addpost">Add a Post</a>
+                    <a class="btn btn-primary text-uppercase" href="logout">Logout</a>
+                    <hr class="my-4"></hr>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sno</th>
+                                <th>Title</th>
+                                <th>Posted on</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>   
+                        <tbody>
+                	{% for post in posts %}
+                            <tr>
+                                <td>{{ post.sno }}</td>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.timestamp }}</td>
+                                <td><a class="btn btn-primary text-uppercase" href="/edit/{{ post.sno }}">Edit</a></td>
+                                <td><a class="btn btn-primary text-uppercase" href="/delete/{{ post.sno }}">Delete</a></td>
+                            </tr>
+                	{% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- Pager-->
+                	<a href="{{ prev }}"><button class="btn btn-primary text-uppercase float-start mb-4">&larr; Previous</button></a>
+                	<a href="{{ next }}"><button class="btn btn-primary text-uppercase float-end mb-4">Next &rarr;</button></a>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

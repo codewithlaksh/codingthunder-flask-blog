@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}Add a Post{% endblock %}
+
+{% block body %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/post-bg.jpg') }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Add a Post</h1>
+                            <span class="subheading">Here you can add a new post</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>Add a Post</p>
+                        <form id="addForm" action="/addpost" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <div class="mb-3">
+                                <label for="title">Title</label>
+                                <input class="form-control" name="title" id="title" type="text" placeholder="Enter your post's title..." required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="slug">Slug</label>
+                                <input class="form-control" name="slug" id="slug" type="text" placeholder="Enter your post's slug..." required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="desc">Description</label>
+                                <textarea class="form-control" name="desc" id="desc" placeholder="Enter your post's description here..." rows="10" required></textarea>
+                            </div>
+                            <!-- Submit Button-->
+                            <button class="btn btn-primary text-uppercase" type="submit">Add</button>
+                        </form>
+                </div>
+                </div>
+            </div>
+        </main>
+        {% endblock %}
